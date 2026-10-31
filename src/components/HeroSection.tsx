@@ -1,12 +1,13 @@
 import React, { useState, useEffect } from 'react';
 import { motion, useScroll, useTransform } from 'motion/react';
 import { ArrowDown, Play, ExternalLink } from 'lucide-react';
+import luffyHero4k from '../assets/images/luffy_hero_4k_1793367987591.jpg';
 
 interface HeroSectionProps {
   subscribeUrl: string;
 }
 
-const UPLOADED_LUFFY_BG = '/src/assets/images/luffy_hero_4k_1793367987591.jpg';
+const UPLOADED_LUFFY_BG = luffyHero4k;
 const FALLBACK_LUFFY_BG = '/assets/aistudio/luffy_9090c427.jpeg';
 const TITLE_CHARS = 'LUFFYEDITZ26'.split('');
 
@@ -83,14 +84,14 @@ export const HeroSection: React.FC<HeroSectionProps> = ({ subscribeUrl }) => {
         />
       </motion.div>
 
-      {/* Light Top Navbar Scrim + Localized Bottom Readability Gradient (Leaves Fullscreen Image Unobstructed) */}
+      {/* Light Top Navbar Scrim + Localized Bottom Readability Gradient */}
       <div
         aria-hidden="true"
         className="absolute inset-x-0 top-0 h-28 z-10 pointer-events-none bg-gradient-to-b from-[#0A0A0A]/70 to-transparent"
       />
       <div
         aria-hidden="true"
-        className="absolute inset-x-0 bottom-0 h-[58%] z-10 pointer-events-none bg-gradient-to-t from-[#0A0A0A] via-[#0A0A0A]/65 to-transparent"
+        className="absolute inset-x-0 bottom-0 h-[62%] z-10 pointer-events-none bg-gradient-to-t from-[#0A0A0A] via-[#0A0A0A]/70 to-transparent"
       />
 
       {/* Subtle Floating Crimson Particles */}
@@ -124,24 +125,24 @@ export const HeroSection: React.FC<HeroSectionProps> = ({ subscribeUrl }) => {
         style={{ opacity: contentOpacity }}
         className="relative z-20 max-w-[1360px] w-full mx-auto px-6 md:px-12"
       >
-        <div className="max-w-4xl">
-          {/* Secondary Monogram Lockup: NK */}
+        <div className="max-w-5xl">
+          {/* Secondary Monogram Lockup: NK (Mirror Chrome Style) */}
           <motion.div
             initial={{ opacity: 0, y: 14 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.7, delay: 0.15, ease: [0.22, 1, 0.36, 1] }}
             className="inline-flex items-center gap-4 mb-4"
           >
-            <span className="inline-flex items-center justify-center px-3.5 py-1 border border-[#F50707] bg-[#0A0A0A]/80 backdrop-blur-xs font-display italic text-sm md:text-base font-semibold tracking-[0.28em] text-white">
+            <span className="inline-flex items-center justify-center px-3.5 py-1 border border-[#F50707] bg-[#0A0A0A]/85 backdrop-blur-xs font-display text-sm md:text-base font-bold tracking-[0.28em] mirror-heading">
               NK
             </span>
             <span className="h-[1px] w-10 bg-[#F50707]" />
-            <span className="font-sans text-[11px] sm:text-xs font-medium tracking-[0.28em] text-white/90 uppercase drop-shadow-[0_2px_10px_rgba(0,0,0,0.9)]">
-              Navin Kumar · Visual Director
+            <span className="font-display text-[11px] sm:text-xs font-semibold tracking-[0.28em] text-white/95 uppercase drop-shadow-[0_2px_10px_rgba(0,0,0,0.9)]">
+              NAVIN KUMAR · VISUAL DIRECTOR
             </span>
           </motion.div>
 
-          {/* Main Title: LUFFYEDITZ26 — Elegant Masked Curtain Reveal + Sweeping Crimson Light Sheen */}
+          {/* Main Title: LUFFYEDITZ26 — Mirror Chrome Finish + Cross-Browser Mirror Floor Reflection */}
           <div className="relative inline-block max-w-full">
             <div
               aria-hidden="true"
@@ -150,30 +151,30 @@ export const HeroSection: React.FC<HeroSectionProps> = ({ subscribeUrl }) => {
 
             <h1
               aria-label="LUFFYEDITZ26"
-              className="relative font-display font-semibold text-[clamp(2.5rem,7.2vw,6.4rem)] leading-[0.94] tracking-[0.12em] text-white flex flex-wrap items-baseline"
+              className="relative font-display font-extrabold text-[clamp(2.2rem,6.6vw,5.8rem)] leading-[0.96] tracking-[0.12em] flex flex-wrap items-baseline"
             >
               {TITLE_CHARS.map((char, index) => {
                 const isNumber = char === '2' || char === '6';
                 return (
                   <span
                     key={`${char}-${index}`}
-                    className="inline-block overflow-hidden py-1 -my-1"
+                    className="inline-block overflow-visible py-1"
                   >
                     <motion.span
-                      initial={{ y: '115%', opacity: 0, rotateZ: 3 }}
-                      animate={{ y: '0%', opacity: 1, rotateZ: 0 }}
+                      initial={{ y: '100%', opacity: 0, scaleY: 1.25 }}
+                      animate={{ y: '0%', opacity: 1, scaleY: 1 }}
                       whileHover={{
                         y: -5,
-                        color: '#F50707',
+                        scale: 1.05,
                         transition: { duration: 0.18, ease: 'easeOut' },
                       }}
                       transition={{
-                        duration: 0.85,
-                        delay: 0.25 + index * 0.055,
+                        duration: 0.8,
+                        delay: 0.22 + index * 0.05,
                         ease: [0.22, 1, 0.36, 1],
                       }}
                       className={`inline-block cursor-default select-none drop-shadow-[0_8px_28px_rgba(0,0,0,0.95)] ${
-                        isNumber ? 'text-[#F50707] italic font-medium' : 'animate-title-sheen'
+                        isNumber ? 'mirror-crimson-char' : 'mirror-hero-char'
                       }`}
                     >
                       {char}
@@ -183,8 +184,29 @@ export const HeroSection: React.FC<HeroSectionProps> = ({ subscribeUrl }) => {
               })}
             </h1>
 
+            {/* Cross-Browser Vertical Mirror Reflection Layer */}
+            <motion.div
+              aria-hidden="true"
+              initial={{ opacity: 0 }}
+              animate={{ opacity: 0.32 }}
+              transition={{ duration: 1, delay: 0.9 }}
+              className="pointer-events-none select-none font-display font-extrabold text-[clamp(2.2rem,6.6vw,5.8rem)] leading-[0.96] tracking-[0.12em] flex flex-wrap items-baseline scale-y-[-0.38] origin-top -mt-1 blur-[0.6px] [mask-image:linear-gradient(to_bottom,rgba(0,0,0,0.85)_0%,transparent_75%)]"
+            >
+              {TITLE_CHARS.map((char, index) => {
+                const isNumber = char === '2' || char === '6';
+                return (
+                  <span
+                    key={`reflect-${char}-${index}`}
+                    className={isNumber ? 'text-[#F50707]' : 'text-white'}
+                  >
+                    {char}
+                  </span>
+                );
+              })}
+            </motion.div>
+
             {/* Elegant Precision Crimson Horizon Slash with Center Diamond Accent */}
-            <div className="relative mt-3 flex items-center">
+            <div className="relative -mt-4 sm:-mt-6 flex items-center">
               <motion.div
                 aria-hidden="true"
                 initial={{ scaleX: 0, opacity: 0 }}
@@ -202,12 +224,12 @@ export const HeroSection: React.FC<HeroSectionProps> = ({ subscribeUrl }) => {
             </div>
           </div>
 
-          {/* Subtitle */}
+          {/* Subtitle in Mirror Display Font */}
           <motion.p
             initial={{ opacity: 0, y: 14 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.7, delay: 1.05, ease: [0.22, 1, 0.36, 1] }}
-            className="mt-4 font-sans text-xs sm:text-sm md:text-base font-normal tracking-[0.34em] text-white/95 uppercase max-w-2xl drop-shadow-[0_2px_12px_rgba(0,0,0,0.9)]"
+            className="mt-5 font-display text-xs sm:text-sm md:text-base font-bold tracking-[0.3em] mirror-heading uppercase max-w-2xl drop-shadow-[0_2px_12px_rgba(0,0,0,0.9)]"
           >
             ANIME ENERGY. CREATIVE VISION. REAL TECH.
           </motion.p>
@@ -222,7 +244,7 @@ export const HeroSection: React.FC<HeroSectionProps> = ({ subscribeUrl }) => {
             <a
               href="#videos"
               onClick={scrollToVideos}
-              className="group inline-flex items-center justify-center gap-3 px-7 py-3.5 text-xs sm:text-sm font-medium tracking-[0.22em] text-white bg-[#0A0A0A]/80 backdrop-blur-xs border border-white/30 hover:border-[#F50707] hover:bg-[#0A0A0A] transition-all duration-150 whitespace-nowrap shrink-0 focus-visible:outline-2 focus-visible:outline-[#F50707]"
+              className="group inline-flex items-center justify-center gap-3 px-7 py-3.5 text-xs sm:text-sm font-display font-bold tracking-[0.22em] text-white bg-[#0A0A0A]/80 backdrop-blur-xs border border-white/30 hover:border-[#F50707] hover:bg-[#0A0A0A] transition-all duration-150 whitespace-nowrap shrink-0 focus-visible:outline-2 focus-visible:outline-[#F50707]"
             >
               <Play className="w-3.5 h-3.5 text-[#F50707] fill-[#F50707] transition-transform duration-150 group-hover:scale-110" />
               <span>EXPLORE VIDEOS</span>
@@ -232,7 +254,7 @@ export const HeroSection: React.FC<HeroSectionProps> = ({ subscribeUrl }) => {
               href={subscribeUrl}
               target="_blank"
               rel="noopener noreferrer"
-              className="inline-flex items-center justify-center gap-3 px-8 py-3.5 text-xs sm:text-sm font-semibold tracking-[0.22em] text-white bg-[#F50707] hover:bg-[#d80606] transition-all duration-150 animate-crimson-pulse whitespace-nowrap shrink-0 focus-visible:outline-2 focus-visible:outline-white"
+              className="inline-flex items-center justify-center gap-3 px-8 py-3.5 text-xs sm:text-sm font-display font-bold tracking-[0.22em] text-white bg-[#F50707] hover:bg-[#d80606] transition-all duration-150 animate-crimson-pulse whitespace-nowrap shrink-0 focus-visible:outline-2 focus-visible:outline-white"
             >
               <span>SUBSCRIBE</span>
               <ExternalLink className="w-3.5 h-3.5" />

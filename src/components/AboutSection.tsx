@@ -1,8 +1,9 @@
 import React, { useState } from 'react';
 import { motion } from 'motion/react';
+import luffyRedMoonFallback from '../assets/images/luffy_red_moon_hero_1793366220996.jpg';
 
 const CREATOR_PORTRAIT_PRIMARY = '/assets/aistudio/nk_42b50194.jpeg';
-const CREATOR_PORTRAIT_FALLBACK = '/src/assets/images/luffy_red_moon_hero_1793366220996.jpg';
+const CREATOR_PORTRAIT_FALLBACK = luffyRedMoonFallback;
 
 const DISCIPLINES = ['VIDEO EDITOR', 'TECH BUILDER', 'ANIME CREATOR'];
 
@@ -71,34 +72,27 @@ export const AboutSection: React.FC = () => {
             transition={{ duration: 0.65, ease: [0.16, 1, 0.3, 1] }}
             className="lg:col-span-5 flex flex-col justify-between"
           >
-            <div className="group relative h-full min-h-[460px] sm:min-h-[560px] p-3 sm:p-4 border border-[#F50707]/60 bg-[#0A0A0A] flex flex-col">
-              {/* Fine Crimson Corner Hairlines */}
+            <div className="group relative h-full min-h-[460px] sm:min-h-[560px] p-3 sm:p-4 border border-white/20 bg-[#0A0A0A] flex flex-col">
+              {/* Fine Monochrome Corner Hairlines */}
               <span
                 aria-hidden="true"
-                className="absolute -top-[1px] -left-[1px] w-5 h-5 border-t-2 border-l-2 border-[#F50707]"
+                className="absolute -top-[1px] -left-[1px] w-5 h-5 border-t-2 border-l-2 border-white/40"
               />
               <span
                 aria-hidden="true"
-                className="absolute -top-[1px] -right-[1px] w-5 h-5 border-t-2 border-r-2 border-[#F50707]"
+                className="absolute -top-[1px] -right-[1px] w-5 h-5 border-t-2 border-r-2 border-white/40"
               />
               <span
                 aria-hidden="true"
-                className="absolute -bottom-[1px] -left-[1px] w-5 h-5 border-b-2 border-l-2 border-[#F50707]"
+                className="absolute -bottom-[1px] -left-[1px] w-5 h-5 border-b-2 border-l-2 border-white/40"
               />
               <span
                 aria-hidden="true"
-                className="absolute -bottom-[1px] -right-[1px] w-5 h-5 border-b-2 border-r-2 border-[#F50707]"
+                className="absolute -bottom-[1px] -right-[1px] w-5 h-5 border-b-2 border-r-2 border-white/40"
               />
 
-              {/* Portrait Container */}
+              {/* Portrait Container - Pure neutral black presentation with zero red tint */}
               <div className="relative flex-1 w-full overflow-hidden bg-[#0A0A0A] border border-white/10">
-                <div
-                  className="absolute inset-0"
-                  style={{
-                    backgroundImage:
-                      'radial-gradient(circle at 50% 35%, rgba(245, 7, 7, 0.18), rgba(10, 10, 10, 0.98) 75%)',
-                  }}
-                />
                 <img
                   src={portraitSrc}
                   alt="Navin Kumar (NK) — Editorial Creator Portrait"
@@ -109,22 +103,21 @@ export const AboutSection: React.FC = () => {
                       setPortraitSrc(CREATOR_PORTRAIT_FALLBACK);
                     }
                   }}
-                  className={`w-full h-full object-cover object-[50%_18%] group-hover:scale-[1.03] transition-all duration-700 ${
+                  className={`w-full h-full object-cover object-[50%_18%] group-hover:scale-[1.02] transition-all duration-700 ${
                     portraitLoaded ? 'opacity-100' : 'opacity-0'
                   }`}
                 />
 
-                {/* Subtle Crimson Edge Lighting & Bottom Contrast Scrim */}
-                <div className="absolute inset-0 bg-gradient-to-t from-[#0A0A0A] via-transparent to-transparent pointer-events-none" />
-                <div className="absolute inset-0 shadow-[inset_0_0_40px_rgba(245,7,7,0.08)] pointer-events-none" />
+                {/* Pure Neutral Shadow Scrim at Bottom for Caption Legibility */}
+                <div className="absolute inset-0 bg-gradient-to-t from-[#0A0A0A] via-[#0A0A0A]/30 to-transparent pointer-events-none" />
 
                 {/* Bottom Caption Inside Frame */}
-                <div className="absolute bottom-0 inset-x-0 p-5 flex items-end justify-between border-t border-white/10 bg-[#0A0A0A]/85 backdrop-blur-xs">
+                <div className="absolute bottom-0 inset-x-0 p-5 flex items-end justify-between border-t border-white/10 bg-[#0A0A0A]/90 backdrop-blur-xs">
                   <div>
-                    <p className="font-mono text-[11px] tracking-[0.22em] text-[#F50707]">
+                    <p className="font-mono text-[11px] tracking-[0.22em] text-white/70">
                       CREATOR MONOGRAPH · NK
                     </p>
-                    <p className="font-display text-sm font-bold tracking-[0.14em] text-white mt-1">
+                    <p className="font-display text-sm font-bold tracking-[0.14em] mirror-heading mt-1">
                       NAVIN KUMAR (NK)
                     </p>
                   </div>
@@ -157,15 +150,15 @@ export const AboutSection: React.FC = () => {
                 ))}
               </div>
 
-              {/* Editorial Serif Section Heading */}
-              <h2 className="font-display text-3xl sm:text-4xl lg:text-5xl font-bold tracking-[0.06em] text-white leading-[1.12] [text-wrap:balance]">
+              {/* Mirror Chrome Section Heading */}
+              <h2 className="font-display text-3xl sm:text-4xl lg:text-5xl font-extrabold tracking-[0.08em] mirror-heading leading-[1.15] [text-wrap:balance]">
                 THE MIND BEHIND THE EDITS
               </h2>
 
               {/* Creator Name Sub-header */}
-              <div className="mt-6 pb-6 border-b border-[#F50707]/40 flex flex-wrap items-baseline justify-between gap-4">
-                <p className="font-display text-xl sm:text-2xl font-semibold tracking-[0.1em] text-white">
-                  Navin Kumar <span className="text-[#F50707]">(NK)</span>
+              <div className="mt-8 pb-6 border-b border-[#F50707]/40 flex flex-wrap items-baseline justify-between gap-4">
+                <p className="font-display text-xl sm:text-2xl font-bold tracking-[0.12em] mirror-heading">
+                  NAVIN KUMAR <span className="text-[#F50707]">(NK)</span>
                 </p>
                 <span className="font-mono text-xs tracking-[0.2em] text-white/60">
                   FOUNDER &amp; CREATOR · @LUFFYEDITZ26
@@ -200,7 +193,7 @@ export const AboutSection: React.FC = () => {
                       <span>{pillar.index}.</span>
                       <span className="h-[1px] flex-1 bg-white/15 group-hover:bg-[#F50707]/60 transition-colors" />
                     </div>
-                    <h3 className="font-display text-base font-bold tracking-[0.06em] text-white mb-2">
+                    <h3 className="font-display text-base font-bold tracking-[0.08em] mirror-heading mb-2">
                       {pillar.title}
                     </h3>
                     <p className="text-sm leading-relaxed text-white/65">{pillar.detail}</p>

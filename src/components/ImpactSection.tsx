@@ -18,7 +18,6 @@ interface AnimatedStatValueProps {
 }
 
 const AnimatedStatValue: React.FC<AnimatedStatValueProps> = ({ value, loading, syncTrigger }) => {
-  // Always keep containerRef mounted so IntersectionObserver never misses initial render
   const containerRef = useRef<HTMLDivElement | null>(null);
   const isInView = useInView(containerRef, { once: true, amount: 0.15 });
   const [displayValue, setDisplayValue] = useState<number>(value ?? 0);
@@ -27,7 +26,6 @@ const AnimatedStatValue: React.FC<AnimatedStatValueProps> = ({ value, loading, s
   useEffect(() => {
     if (value === null || !Number.isFinite(value)) return;
 
-    // If not yet scrolled into view, still set the target value as fallback so it is never stuck at 0
     if (!isInView) {
       setDisplayValue(value);
       return;
@@ -71,7 +69,7 @@ const AnimatedStatValue: React.FC<AnimatedStatValueProps> = ({ value, loading, s
           UNAVAILABLE
         </span>
       ) : (
-        <span className="font-mono text-4xl sm:text-5xl lg:text-6xl font-semibold tracking-tight text-white tabular-nums">
+        <span className="font-display text-4xl sm:text-5xl lg:text-6xl font-extrabold tracking-tight mirror-stat tabular-nums">
           {new Intl.NumberFormat('en-US').format(displayValue)}
         </span>
       )}
@@ -169,7 +167,7 @@ export const ImpactSection: React.FC<ImpactSectionProps> = ({
               <span>/</span>
               <span>VERIFIED CHANNEL IMPACT</span>
             </div>
-            <h2 className="font-display text-3xl sm:text-4xl lg:text-5xl font-bold tracking-[0.06em] text-white [text-wrap:balance]">
+            <h2 className="font-display text-3xl sm:text-4xl lg:text-5xl font-extrabold tracking-[0.08em] mirror-heading [text-wrap:balance]">
               AUDIENCE &amp; REACH
             </h2>
           </div>
@@ -185,7 +183,7 @@ export const ImpactSection: React.FC<ImpactSectionProps> = ({
               type="button"
               onClick={onSyncLive}
               disabled={syncing || loading}
-              className="inline-flex items-center gap-2.5 px-5 py-3 text-xs font-mono font-semibold tracking-[0.18em] text-white bg-[#0A0A0A] border border-[#F50707] hover:bg-[#F50707] disabled:opacity-50 transition-colors duration-150 cursor-pointer whitespace-nowrap shrink-0 focus-visible:outline-2 focus-visible:outline-white"
+              className="inline-flex items-center gap-2.5 px-5 py-3 text-xs font-display font-bold tracking-[0.18em] text-white bg-[#0A0A0A] border border-[#F50707] hover:bg-[#F50707] disabled:opacity-50 transition-colors duration-150 cursor-pointer whitespace-nowrap shrink-0 focus-visible:outline-2 focus-visible:outline-white"
             >
               {justSynced && !syncing ? (
                 <>
@@ -242,7 +240,7 @@ export const ImpactSection: React.FC<ImpactSectionProps> = ({
                   <span>{syncing ? 'UPDATING...' : 'VERIFIED LIVE'}</span>
                 </div>
 
-                <div className="my-2">
+                <div className="my-4">
                   <AnimatedStatValue
                     value={item.value}
                     loading={loading}
@@ -250,7 +248,7 @@ export const ImpactSection: React.FC<ImpactSectionProps> = ({
                   />
                 </div>
 
-                <h3 className="mt-4 font-display text-sm font-bold tracking-[0.16em] text-white">
+                <h3 className="mt-6 font-display text-sm font-bold tracking-[0.16em] mirror-heading">
                   {item.label}
                 </h3>
               </div>
@@ -281,7 +279,7 @@ export const ImpactSection: React.FC<ImpactSectionProps> = ({
             }
             target="_blank"
             rel="noopener noreferrer"
-            className="inline-flex items-center gap-2 text-white hover:text-[#F50707] transition-colors whitespace-nowrap"
+            className="inline-flex items-center gap-2 font-display font-bold text-white hover:text-[#F50707] transition-colors whitespace-nowrap"
           >
             <span>VERIFY ON YOUTUBE</span>
             <ExternalLink className="w-3.5 h-3.5 text-[#F50707]" />

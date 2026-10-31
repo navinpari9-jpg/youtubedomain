@@ -616,9 +616,30 @@ async function getChannelData(forceRefresh: boolean): Promise<YouTubeChannelPayl
 
 async function startServer() {
   const app = express();
-  const PORT = Number(process.env.PORT) || 3000;
+
+  // Parse command line arguments (e.g. --port 3000 --host 0.0.0.0)
+  const args = process.argv.slice(2);
+  const portArgIdx = args.indexOf('--port');
+  const cliPort = portArgIdx !== -1 && args[portArgIdx + 1] ? Number(args[portArgIdx + 1]) : NaN;
+
+  // In AI Studio, PORT is often set to 8080 (Nginx port); prevent EADDRINUSE crash by defaulting to 3000
+  let envPort = Number(process.env.PORT);
+  if (envPort === 8080) {
+    envPort = 3000;
+  }
+
+  const PORT = !Number.isNaN(cliPort) && cliPort > 0 ? cliPort : (envPort || 3000);
+
+  // Parse host argument if provided
+  const hostArgIdx = args.indexOf('--host');
+  const HOST = hostArgIdx !== -1 && args[hostArgIdx + 1] ? args[hostArgIdx + 1] : '0.0.0.0';
 
   app.use(express.json());
+
+  // Healthcheck endpoint for proxies and container monitors
+  app.get('/health', (_req, res) => {
+    res.status(200).json({ status: 'ok', time: new Date().toISOString() });
+  });
 
   // Live YouTube Channel & Uploads Synchronization Endpoint
   app.get('/api/youtube/channel', async (req, res) => {
@@ -696,9 +717,17 @@ async function startServer() {
     });
   }
 
-  app.listen(PORT, '0.0.0.0', () => {
-    console.log(`luffyeditz26 / NK server running on http://0.0.0.0:${PORT}`);
+  app.listen(PORT, HOST, () => {
+    console.log(`luffyeditz26 / NK server running on http://${HOST}:${PORT}`);
   });
 }
+
+process.on('uncaughtException', (err) => {
+  console.error('Uncaught Exception:', err);
+});
+
+process.on('unhandledRejection', (reason, promise) => {
+  console.error('Unhandled Rejection at:', promise, 'reason:', reason);
+});
 
 startServer();

@@ -13,6 +13,7 @@ import { ImpactSection } from './components/ImpactSection';
 import { ContactSection } from './components/ContactSection';
 import { CustomCursor } from './components/CustomCursor';
 import { YouTubeChannelPayload } from './types/youtube';
+import { fetchClientSideYouTubeFallback } from './utils/youtubeFallback';
 
 const DEFAULT_CHANNEL_URL = 'https://www.youtube.com/channel/UC-ZyJFA9ZcGtzRg7J0QntDQ';
 const DEFAULT_SUBSCRIBE_URL =
@@ -40,6 +41,12 @@ export default function App() {
         ? `/api/youtube/channel?refresh=true&t=${Date.now()}`
         : '/api/youtube/channel';
       const response = await fetch(endpoint);
+      const contentType = response.headers.get('content-type') || '';
+
+      if (!contentType.includes('application/json')) {
+        throw new Error('Static host environment detected');
+      }
+
       const data = await response.json();
 
       if (!response.ok) {
@@ -47,10 +54,16 @@ export default function App() {
       }
 
       setChannelData(data);
-    } catch (err: any) {
-      setError(
-        err?.message || 'Unable to connect to the YouTube synchronization service right now.'
-      );
+    } catch {
+      try {
+        const fallbackData = await fetchClientSideYouTubeFallback();
+        setChannelData(fallbackData);
+      } catch (fallbackErr: any) {
+        setError(
+          fallbackErr?.message ||
+            'Unable to connect to the YouTube synchronization service right now.'
+        );
+      }
     } finally {
       setLoading(false);
       setSyncing(false);

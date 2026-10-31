@@ -2,6 +2,9 @@ import React, { useState, useEffect, useMemo } from 'react';
 import { motion, AnimatePresence } from 'motion/react';
 import { Play, ExternalLink, X, AlertCircle, RefreshCw, Film } from 'lucide-react';
 import { VideoCategory, YouTubeVideoItem } from '../types/youtube';
+import thumbAnimeAwakening from '../assets/images/thumb_anime_awakening_1793366223850.jpg';
+import thumbTechWorkflow from '../assets/images/thumb_tech_workflow_1793366225832.jpg';
+import thumbCreativeVfx from '../assets/images/thumb_creative_vfx_1793366225977.jpg';
 
 interface VideosSectionProps {
   videos: YouTubeVideoItem[];
@@ -14,9 +17,9 @@ interface VideosSectionProps {
 const CATEGORIES: VideoCategory[] = ['ALL', 'ANIME EDITS', 'TECH GUIDES', 'CREATIVE EDITS'];
 
 const FALLBACK_THUMBS: Record<Exclude<VideoCategory, 'ALL'>, string> = {
-  'ANIME EDITS': '/src/assets/images/thumb_anime_awakening_1793366223850.jpg',
-  'TECH GUIDES': '/src/assets/images/thumb_tech_workflow_1793366225832.jpg',
-  'CREATIVE EDITS': '/src/assets/images/thumb_creative_vfx_1793366225977.jpg',
+  'ANIME EDITS': thumbAnimeAwakening,
+  'TECH GUIDES': thumbTechWorkflow,
+  'CREATIVE EDITS': thumbCreativeVfx,
 };
 
 function formatPublishedDate(iso: string): string {
@@ -95,7 +98,6 @@ export const VideosSection: React.FC<VideosSectionProps> = ({
   const featuredVideo = filteredVideos[0] || null;
   const supportingVideos = filteredVideos.slice(1, 9);
 
-  // Close cinema modal on Escape key
   useEffect(() => {
     if (!selectedVideo) return;
     const handleKeyDown = (e: KeyboardEvent) => {
@@ -127,12 +129,12 @@ export const VideosSection: React.FC<VideosSectionProps> = ({
               <span>/</span>
               <span>CINEMATIC SHOWCASE</span>
             </div>
-            <h2 className="font-display text-3xl sm:text-4xl lg:text-5xl font-bold tracking-[0.06em] text-white [text-wrap:balance]">
+            <h2 className="font-display text-3xl sm:text-4xl lg:text-5xl font-extrabold tracking-[0.08em] mirror-heading [text-wrap:balance]">
               LATEST RELEASES
             </h2>
           </div>
 
-          {/* Interactive Filter Controls (Functional Buttons) */}
+          {/* Interactive Filter Controls */}
           <div
             role="tablist"
             aria-label="Filter videos by category"
@@ -147,9 +149,9 @@ export const VideosSection: React.FC<VideosSectionProps> = ({
                   role="tab"
                   aria-selected={isSelected}
                   onClick={() => setActiveCategory(category)}
-                  className={`px-4 py-2.5 text-xs font-mono tracking-[0.16em] transition-all duration-150 whitespace-nowrap shrink-0 cursor-pointer focus-visible:outline-2 focus-visible:outline-[#F50707] ${
+                  className={`px-4 py-2.5 text-xs font-display font-bold tracking-[0.16em] transition-all duration-150 whitespace-nowrap shrink-0 cursor-pointer focus-visible:outline-2 focus-visible:outline-[#F50707] ${
                     isSelected
-                      ? 'bg-[#F50707] text-white font-semibold'
+                      ? 'bg-[#F50707] text-white'
                       : 'bg-transparent text-white/65 border border-white/15 hover:border-[#F50707]/60 hover:text-white'
                   }`}
                 >
@@ -187,7 +189,7 @@ export const VideosSection: React.FC<VideosSectionProps> = ({
             <div className="flex items-start gap-4">
               <AlertCircle className="w-6 h-6 text-[#F50707] shrink-0 mt-0.5" />
               <div>
-                <h3 className="font-display text-lg font-bold tracking-[0.08em] text-white">
+                <h3 className="font-display text-lg font-bold tracking-[0.08em] mirror-heading">
                   UNABLE TO LOAD LIVE UPLOADS
                 </h3>
                 <p className="text-sm text-white/70 mt-1 max-w-xl">{error}</p>
@@ -219,7 +221,7 @@ export const VideosSection: React.FC<VideosSectionProps> = ({
         {!loading && !error && filteredVideos.length === 0 && (
           <div className="mt-12 py-20 px-6 border border-white/10 text-center">
             <Film className="w-8 h-8 text-[#F50707] mx-auto mb-4" />
-            <h3 className="font-display text-xl font-bold tracking-[0.08em] text-white">
+            <h3 className="font-display text-xl font-bold tracking-[0.08em] mirror-heading">
               NO UPLOADS IN THIS CATEGORY YET
             </h3>
             <p className="text-sm text-white/65 mt-2 max-w-md mx-auto">
@@ -285,7 +287,6 @@ export const VideosSection: React.FC<VideosSectionProps> = ({
                   {/* Featured Video Metadata Overlay */}
                   <div className="absolute bottom-0 inset-x-0 p-6 sm:p-10 flex flex-col sm:flex-row sm:items-end justify-between gap-4">
                     <div className="max-w-3xl">
-                      {/* Unboxed Metadata with Typographic Separators */}
                       <div className="flex flex-wrap items-center gap-2 font-mono text-xs tracking-[0.2em] text-white/80 mb-3">
                         <span className="text-[#F50707] font-semibold">FEATURED PREMIERE</span>
                         <span aria-hidden="true">·</span>
@@ -308,7 +309,7 @@ export const VideosSection: React.FC<VideosSectionProps> = ({
                         )}
                       </div>
 
-                      <h3 className="font-display text-xl sm:text-3xl md:text-4xl font-bold tracking-[0.04em] text-white leading-tight [text-wrap:balance]">
+                      <h3 className="font-display text-xl sm:text-3xl md:text-4xl font-bold tracking-[0.05em] text-white leading-tight [text-wrap:balance]">
                         {featuredVideo.title}
                       </h3>
                     </div>
@@ -325,7 +326,6 @@ export const VideosSection: React.FC<VideosSectionProps> = ({
             {supportingVideos.length > 0 && (
               <div className="grid grid-cols-1 md:grid-cols-12 gap-8 md:gap-10">
                 {supportingVideos.map((video, index) => {
-                  // Asymmetric editorial spans: alternating 7/5 and 5/7 columns across rows
                   const rowPattern = index % 4;
                   const colSpanClass =
                     rowPattern === 0
@@ -362,7 +362,6 @@ export const VideosSection: React.FC<VideosSectionProps> = ({
                           />
                           <div className="absolute inset-0 bg-gradient-to-t from-[#0A0A0A]/80 via-transparent to-transparent" />
 
-                          {/* Subtle Play Icon Animation */}
                           <div className="absolute inset-0 flex items-center justify-center">
                             <div className="w-12 h-12 flex items-center justify-center bg-[#0A0A0A]/80 border border-white/30 group-hover:border-[#F50707] group-hover:bg-[#F50707] transition-all duration-200">
                               <Play className="w-4 h-4 text-white fill-white translate-x-0.5 transition-transform duration-200 group-hover:scale-110" />
@@ -376,7 +375,6 @@ export const VideosSection: React.FC<VideosSectionProps> = ({
                           )}
                         </div>
 
-                        {/* Unboxed Metadata + Title Below Frame */}
                         <div className="mt-4">
                           <div className="flex flex-wrap items-center gap-2 font-mono text-[11px] tracking-[0.18em] text-white/60">
                             <span className="text-[#F50707]">{video.category}</span>
@@ -392,7 +390,7 @@ export const VideosSection: React.FC<VideosSectionProps> = ({
                             )}
                           </div>
 
-                          <h3 className="mt-2 font-display text-lg sm:text-xl font-bold tracking-[0.03em] text-white group-hover:text-[#F50707] transition-colors duration-150 line-clamp-2">
+                          <h3 className="mt-2 font-display text-lg sm:text-xl font-bold tracking-[0.04em] text-white group-hover:text-[#F50707] transition-colors duration-150 line-clamp-2">
                             {video.title}
                           </h3>
                         </div>
@@ -414,7 +412,7 @@ export const VideosSection: React.FC<VideosSectionProps> = ({
             href={`${channelUrl}/videos`}
             target="_blank"
             rel="noopener noreferrer"
-            className="group inline-flex items-center gap-3 font-display text-sm font-bold tracking-[0.2em] text-white hover:text-[#F50707] transition-colors whitespace-nowrap"
+            className="group inline-flex items-center gap-3 font-display text-sm font-bold tracking-[0.2em] mirror-heading hover:text-[#F50707] transition-colors whitespace-nowrap"
           >
             <span>VIEW ALL VIDEOS</span>
             <span className="w-8 h-[1px] bg-[#F50707] transition-all duration-200 group-hover:w-12" />
@@ -445,7 +443,6 @@ export const VideosSection: React.FC<VideosSectionProps> = ({
               onClick={(e) => e.stopPropagation()}
               className="w-full max-w-5xl bg-[#0A0A0A] border border-[#F50707]/60 shadow-[0_0_60px_rgba(0,0,0,0.95)]"
             >
-              {/* Modal Top Bar */}
               <div className="flex items-center justify-between gap-4 px-5 py-4 border-b border-white/10">
                 <div className="min-w-0">
                   <div className="flex items-center gap-2 font-mono text-[11px] tracking-[0.18em] text-white/60">
@@ -479,7 +476,6 @@ export const VideosSection: React.FC<VideosSectionProps> = ({
                 </div>
               </div>
 
-              {/* 16:9 YouTube Player */}
               <div className="relative aspect-video w-full bg-[#0A0A0A]">
                 <iframe
                   src={`https://www.youtube-nocookie.com/embed/${selectedVideo.id}?autoplay=1&rel=0`}

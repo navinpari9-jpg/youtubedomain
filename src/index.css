@@ -2,7 +2,7 @@
 @custom-variant dark (&:where(.dark, .dark *));
 
 @theme {
-  --font-display: "Cormorant Garamond", Georgia, serif;
+  --font-display: "Cinzel", "Syne", Georgia, serif;
   --font-sans: "Outfit", -apple-system, BlinkMacSystemFont, sans-serif;
   --font-mono: "JetBrains Mono", monospace;
   --color-obsidian: #0A0A0A;
@@ -23,7 +23,22 @@
     color: #FFFFFF;
     overflow-x: hidden;
     font-weight: 400;
-    letter-spacing: 0.01em;
+    letter-spacing: 0.02em;
+  }
+
+  /* Apply sleek mirror-chrome crispness to all headings */
+  h1, h2, h3, .font-display {
+    font-family: var(--font-display);
+    background: linear-gradient(
+      180deg,
+      #FFFFFF 0%,
+      #FFFFFF 46%,
+      #B8B8B8 50%,
+      #FFFFFF 54%,
+      #F5F5F5 100%
+    );
+    -webkit-background-clip: text;
+    background-clip: text;
   }
 }
 
@@ -37,8 +52,8 @@
   }
 }
 
-/* Elegant metallic-crimson light sheen across LUFFYEDITZ26 */
-@keyframes title-sheen {
+/* Mirror-chrome light reflection sweep across display typography */
+@keyframes mirror-sheen {
   0% {
     background-position: -200% 0;
   }
@@ -47,7 +62,7 @@
   }
 }
 
-/* Soft floating crimson aura behind LUFFYEDITZ26 */
+/* Soft floating crimson aura behind hero title */
 @keyframes aura-breathe {
   0%, 100% {
     opacity: 0.22;
@@ -63,21 +78,67 @@
   animation: crimson-pulse 3.4s infinite cubic-bezier(0.16, 1, 0.3, 1);
 }
 
-.animate-title-sheen {
+/* High-gloss Mirror Font finish + vertical floor reflection */
+.mirror-hero-char {
   background: linear-gradient(
-    110deg,
+    180deg,
     #FFFFFF 0%,
-    #FFFFFF 42%,
-    #F50707 50%,
-    #FFFFFF 58%,
-    #FFFFFF 100%
+    #F8F8F8 44%,
+    #7A7A7A 50%,
+    #FFFFFF 55%,
+    #F50707 100%
   );
-  background-size: 220% 100%;
+  background-size: 100% 100%;
   -webkit-background-clip: text;
   background-clip: text;
   color: transparent;
-  animation: title-sheen 6.5s infinite cubic-bezier(0.22, 1, 0.36, 1);
-  animation-delay: 1.4s;
+  -webkit-box-reflect: below -8px linear-gradient(transparent 52%, rgba(255, 255, 255, 0.24));
+}
+
+.mirror-crimson-char {
+  background: linear-gradient(
+    180deg,
+    #FFFFFF 0%,
+    #F50707 45%,
+    #7A0000 52%,
+    #F50707 60%,
+    #FFFFFF 100%
+  );
+  -webkit-background-clip: text;
+  background-clip: text;
+  color: transparent;
+  -webkit-box-reflect: below -8px linear-gradient(transparent 52%, rgba(245, 7, 7, 0.28));
+}
+
+/* Mirror reflection for section headings & stats */
+.mirror-heading {
+  background: linear-gradient(
+    180deg,
+    #FFFFFF 0%,
+    #F2F2F2 46%,
+    #8C8C8C 50%,
+    #FFFFFF 55%,
+    #E5E5E5 100%
+  );
+  -webkit-background-clip: text;
+  background-clip: text;
+  color: transparent;
+  -webkit-box-reflect: below -6px linear-gradient(transparent 62%, rgba(255, 255, 255, 0.16));
+}
+
+.mirror-stat {
+  background: linear-gradient(
+    180deg,
+    #FFFFFF 0%,
+    #F5F5F5 48%,
+    #8E8E8E 52%,
+    #FFFFFF 58%,
+    #F50707 100%
+  );
+  -webkit-background-clip: text;
+  background-clip: text;
+  color: transparent;
+  -webkit-box-reflect: below -6px linear-gradient(transparent 60%, rgba(245, 7, 7, 0.18));
 }
 
 .animate-aura-breathe {

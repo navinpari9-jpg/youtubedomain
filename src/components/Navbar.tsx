@@ -45,11 +45,11 @@ export const Navbar: React.FC<NavbarProps> = ({ activeSection, subscribeUrl }) =
       }`}
     >
       <div className="max-w-[1360px] mx-auto px-6 md:px-12 flex items-center justify-between gap-8">
-        {/* Zone 1: Single text element wordmark */}
+        {/* Zone 1: Single text element wordmark in Mirror Chrome */}
         <a
           href="#hero"
           onClick={(e) => handleNavClick(e, 'hero')}
-          className="font-display text-lg md:text-xl font-bold tracking-[0.22em] text-white hover:text-[#F50707] transition-colors duration-200 whitespace-nowrap shrink-0 focus-visible:outline-2 focus-visible:outline-[#F50707]"
+          className="font-display text-lg md:text-xl font-extrabold tracking-[0.22em] mirror-heading hover:text-[#F50707] transition-colors duration-200 whitespace-nowrap shrink-0 focus-visible:outline-2 focus-visible:outline-[#F50707]"
         >
           LUFFYEDITZ26
         </a>
@@ -57,7 +57,7 @@ export const Navbar: React.FC<NavbarProps> = ({ activeSection, subscribeUrl }) =
         {/* Zone 2: 4 concise single-line navigation links */}
         <nav
           aria-label="Primary Navigation"
-          className="hidden md:flex items-center gap-9 text-sm font-medium"
+          className="hidden md:flex items-center gap-9 text-xs font-display font-bold"
         >
           {NAV_ITEMS.map((item) => {
             const isActive = activeSection === item.id;
@@ -66,8 +66,8 @@ export const Navbar: React.FC<NavbarProps> = ({ activeSection, subscribeUrl }) =
                 key={item.id}
                 href={`#${item.id}`}
                 onClick={(e) => handleNavClick(e, item.id)}
-                className={`relative py-1.5 tracking-[0.12em] transition-colors duration-150 whitespace-nowrap shrink-0 focus-visible:outline-2 focus-visible:outline-[#F50707] ${
-                  isActive ? 'text-white' : 'text-white/65 hover:text-white'
+                className={`relative py-1.5 tracking-[0.18em] uppercase transition-colors duration-150 whitespace-nowrap shrink-0 focus-visible:outline-2 focus-visible:outline-[#F50707] ${
+                  isActive ? 'text-white' : 'text-white/70 hover:text-white'
                 }`}
               >
                 {item.label}
@@ -87,7 +87,7 @@ export const Navbar: React.FC<NavbarProps> = ({ activeSection, subscribeUrl }) =
             href={subscribeUrl}
             target="_blank"
             rel="noopener noreferrer"
-            className="hidden sm:inline-flex items-center justify-center px-5 py-2.5 text-xs font-semibold tracking-[0.16em] text-white bg-[#F50707] hover:bg-[#d10606] transition-colors duration-150 whitespace-nowrap shrink-0 focus-visible:outline-2 focus-visible:outline-white"
+            className="hidden sm:inline-flex items-center justify-center px-5 py-2.5 text-xs font-display font-bold tracking-[0.18em] uppercase text-white bg-[#F50707] hover:bg-[#d10606] transition-colors duration-150 whitespace-nowrap shrink-0 focus-visible:outline-2 focus-visible:outline-white"
           >
             Subscribe
           </a>
@@ -122,7 +122,7 @@ export const Navbar: React.FC<NavbarProps> = ({ activeSection, subscribeUrl }) =
                     key={item.id}
                     href={`#${item.id}`}
                     onClick={(e) => handleNavClick(e, item.id)}
-                    className={`flex items-center justify-between py-3.5 text-base font-medium tracking-[0.14em] border-b border-white/10 transition-colors ${
+                    className={`flex items-center justify-between py-3.5 text-base font-display font-bold tracking-[0.16em] uppercase border-b border-white/10 transition-colors ${
                       isActive ? 'text-[#F50707]' : 'text-white/80 hover:text-white'
                     }`}
                   >
@@ -136,7 +136,7 @@ export const Navbar: React.FC<NavbarProps> = ({ activeSection, subscribeUrl }) =
                   href={subscribeUrl}
                   target="_blank"
                   rel="noopener noreferrer"
-                  className="w-full inline-flex items-center justify-center py-3.5 px-6 text-xs font-semibold tracking-[0.2em] text-white bg-[#F50707] hover:bg-[#d10606] transition-colors whitespace-nowrap"
+                  className="w-full inline-flex items-center justify-center py-3.5 px-6 text-xs font-display font-bold tracking-[0.2em] uppercase text-white bg-[#F50707] hover:bg-[#d10606] transition-colors whitespace-nowrap"
                 >
                   Subscribe on YouTube
                 </a>

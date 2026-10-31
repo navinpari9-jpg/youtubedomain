@@ -87,7 +87,7 @@ export const ContactSection: React.FC<ContactSectionProps> = ({ channelUrl }) =>
         mailtoUrl: data.mailtoUrl,
         smtpConfigured: Boolean(data.smtpConfigured),
       });
-    } catch (err: any) {
+    } catch {
       const fallbackMailto = `mailto:navinzoro3108@gmail.com?subject=${encodeURIComponent(
         trimmedSubject || `Message from ${trimmedName}`
       )}&body=${encodeURIComponent(
@@ -141,8 +141,8 @@ export const ContactSection: React.FC<ContactSectionProps> = ({ channelUrl }) =>
               <p className="font-mono text-xs tracking-[0.24em] text-[#F50707] mb-3">
                 CREATOR &amp; VISUAL DIRECTOR
               </p>
-              <h2 className="font-display text-4xl sm:text-5xl lg:text-6xl font-bold tracking-[0.06em] text-white leading-[1.08]">
-                Navin Kumar <span className="text-[#F50707]">(NK)</span>
+              <h2 className="font-display text-4xl sm:text-5xl lg:text-6xl font-extrabold tracking-[0.08em] mirror-heading leading-[1.12]">
+                NAVIN KUMAR <span className="text-[#F50707]">(NK)</span>
               </h2>
             </div>
 
@@ -153,7 +153,7 @@ export const ContactSection: React.FC<ContactSectionProps> = ({ channelUrl }) =>
               </p>
               <a
                 href="mailto:navinzoro3108@gmail.com"
-                className="group inline-flex items-center gap-3 font-mono text-lg sm:text-2xl md:text-3xl font-medium text-white hover:text-[#F50707] transition-colors break-all focus-visible:outline-2 focus-visible:outline-[#F50707]"
+                className="group inline-flex items-center gap-3 font-display text-lg sm:text-2xl md:text-3xl font-bold mirror-heading hover:text-[#F50707] transition-colors break-all focus-visible:outline-2 focus-visible:outline-[#F50707]"
               >
                 <Mail className="w-5 h-5 sm:w-6 sm:h-6 text-[#F50707] shrink-0" />
                 <span className="underline decoration-white/25 group-hover:decoration-[#F50707] underline-offset-8">
@@ -179,7 +179,7 @@ export const ContactSection: React.FC<ContactSectionProps> = ({ channelUrl }) =>
                       rel="noopener noreferrer"
                       className="group py-4 flex items-center justify-between gap-4 text-white hover:text-[#F50707] transition-colors"
                     >
-                      <span className="font-display text-lg sm:text-xl font-bold tracking-[0.08em]">
+                      <span className="font-display text-lg sm:text-xl font-bold tracking-[0.1em] mirror-heading">
                         {item.label}
                       </span>
                       <div className="flex items-center gap-3 font-mono text-xs tracking-[0.16em] text-white/65 group-hover:text-white">
@@ -202,10 +202,10 @@ export const ContactSection: React.FC<ContactSectionProps> = ({ channelUrl }) =>
             className="lg:col-span-5 p-6 sm:p-8 border border-white/15 bg-[#0A0A0A]"
           >
             <div className="pb-5 mb-6 border-b border-white/10">
-              <h3 className="font-display text-xl font-bold tracking-[0.08em] text-white">
+              <h3 className="font-display text-xl font-bold tracking-[0.1em] mirror-heading">
                 SEND A MESSAGE
               </h3>
-              <p className="text-xs text-white/60 mt-1.5 leading-relaxed">
+              <p className="text-xs text-white/60 mt-2 leading-relaxed">
                 Reach out regarding video editing, creative direction, or channel feedback.
                 Automated server delivery requires an SMTP email backend; validated messages can
                 also be dispatched immediately via your email client.
@@ -216,7 +216,7 @@ export const ContactSection: React.FC<ContactSectionProps> = ({ channelUrl }) =>
               <div>
                 <label
                   htmlFor="contact-name"
-                  className="block font-mono text-[11px] tracking-[0.2em] text-white/75 mb-2"
+                  className="block font-display text-[11px] font-bold tracking-[0.2em] text-white/75 mb-2"
                 >
                   NAME *
                 </label>
@@ -234,7 +234,7 @@ export const ContactSection: React.FC<ContactSectionProps> = ({ channelUrl }) =>
               <div>
                 <label
                   htmlFor="contact-email"
-                  className="block font-mono text-[11px] tracking-[0.2em] text-white/75 mb-2"
+                  className="block font-display text-[11px] font-bold tracking-[0.2em] text-white/75 mb-2"
                 >
                   EMAIL ADDRESS *
                 </label>
@@ -252,7 +252,7 @@ export const ContactSection: React.FC<ContactSectionProps> = ({ channelUrl }) =>
               <div>
                 <label
                   htmlFor="contact-subject"
-                  className="block font-mono text-[11px] tracking-[0.2em] text-white/75 mb-2"
+                  className="block font-display text-[11px] font-bold tracking-[0.2em] text-white/75 mb-2"
                 >
                   SUBJECT
                 </label>
@@ -269,7 +269,7 @@ export const ContactSection: React.FC<ContactSectionProps> = ({ channelUrl }) =>
               <div>
                 <label
                   htmlFor="contact-message"
-                  className="block font-mono text-[11px] tracking-[0.2em] text-white/75 mb-2"
+                  className="block font-display text-[11px] font-bold tracking-[0.2em] text-white/75 mb-2"
                 >
                   MESSAGE *
                 </label>
@@ -299,7 +299,7 @@ export const ContactSection: React.FC<ContactSectionProps> = ({ channelUrl }) =>
                   </div>
                   <a
                     href={formResult.mailtoUrl}
-                    className="inline-flex items-center gap-2 px-4 py-2 font-mono text-[11px] tracking-[0.16em] text-white bg-[#F50707] hover:bg-[#d10606] transition-colors whitespace-nowrap"
+                    className="inline-flex items-center gap-2 px-4 py-2 font-display text-[11px] font-bold tracking-[0.16em] text-white bg-[#F50707] hover:bg-[#d10606] transition-colors whitespace-nowrap"
                   >
                     <span>OPEN IN EMAIL CLIENT</span>
                     <ArrowUpRight className="w-3.5 h-3.5" />
@@ -310,7 +310,7 @@ export const ContactSection: React.FC<ContactSectionProps> = ({ channelUrl }) =>
               <button
                 type="submit"
                 disabled={submitting}
-                className="w-full inline-flex items-center justify-center gap-2.5 px-6 py-4 text-xs font-mono font-semibold tracking-[0.2em] text-white bg-[#F50707] hover:bg-[#d10606] disabled:opacity-50 transition-colors cursor-pointer whitespace-nowrap"
+                className="w-full inline-flex items-center justify-center gap-2.5 px-6 py-4 text-xs font-display font-bold tracking-[0.2em] text-white bg-[#F50707] hover:bg-[#d10606] disabled:opacity-50 transition-colors cursor-pointer whitespace-nowrap"
               >
                 <Send className="w-3.5 h-3.5" />
                 <span>{submitting ? 'VALIDATING...' : 'VALIDATE & PREPARE MESSAGE'}</span>
@@ -322,7 +322,7 @@ export const ContactSection: React.FC<ContactSectionProps> = ({ channelUrl }) =>
         {/* Bottom Copyright & Brand Lockup */}
         <div className="mt-20 pt-8 border-t border-white/10 flex flex-col sm:flex-row items-start sm:items-center justify-between gap-4 text-xs font-mono tracking-[0.18em] text-white/50">
           <div className="flex items-center gap-3">
-            <span className="font-display font-bold text-white tracking-[0.22em]">
+            <span className="font-display font-bold mirror-heading tracking-[0.22em]">
               LUFFYEDITZ26 / NK
             </span>
             <span>·</span>
